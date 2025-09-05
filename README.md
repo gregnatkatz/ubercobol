@@ -25,35 +25,57 @@ A nostalgic COBOL-style terminal emulator for tracking Uber Eats orders, built f
 - 🌐 **Web interface for COBOL editing** - Edit code in your browser!
 - 🏪 **Extensible restaurant database** - Add your favorite locations!
 
-## Super Easy Installation (Windows)
+## Installation
 
-### Option 1: One-Click Install (Recommended)
+### Manual Installation (Recommended)
+The automatic installer has compatibility issues, so follow these simple manual steps:
+
+**Step 1: Install Node.js (if needed)**
+- Go to https://nodejs.org/
+- Download the "LTS" version (recommended for most users)
+- Run the installer and follow the prompts
+- Restart your computer after installation
+
+**Step 2: Download the code**
+```bash
+git clone https://github.com/gregnatkatz/ubercobol.git
+cd ubercobol
+```
+*Or download the ZIP file from GitHub and extract it*
+
+**Step 3: Install dependencies** (takes 1-2 minutes)
+```bash
+npm install
+```
+
+**Step 4: Build the application** (takes 30 seconds)
+```bash
+npm run build
+```
+
+**Step 5: Build the web version** (takes 30 seconds)
+```bash
+npm run build-web
+```
+
+**Step 6: Create Windows installer** (takes 1-2 minutes)
+```bash
+npx electron-builder --win --publish=never
+```
+
+**Installation Complete!**
+- **Desktop version**: Look in the `release` folder for the `.exe` installer file
+- **Web version**: Double-click `start-web.bat` to run in your browser
+
+### Automatic Installation (Has Issues)
+If you want to try the automatic installer (not recommended):
+
 1. **Download this repository** by clicking the green "Code" button above and selecting "Download ZIP"
 2. **Extract the ZIP file** to any folder on your computer
 3. **Double-click `install.bat`** and follow the prompts
-4. **Wait for it to finish** - it will automatically:
-   - Check for Node.js (and tell you to install it if needed)
-   - Install all dependencies
-   - Build the desktop application
-   - Build the web version
-   - Create a Windows installer
-5. **Run the installer** from the `release` folder when it's done
-6. **Access the web version** at `http://localhost:3000` after installation
+4. **Wait for it to finish** - it will automatically handle all the steps above
 
-### Option 2: Manual Installation
-If you prefer to do it step by step:
-
-1. **Install Node.js** from https://nodejs.org/ (choose the LTS version)
-2. **Download and extract this repository**
-3. **Open Command Prompt** in the extracted folder
-4. **Run these commands:**
-   ```cmd
-   npm install
-   npm run build
-   npm run build-web
-   npx electron-builder --win --publish=never
-   ```
-5. **Find the installer** in the `release` folder
+**Note**: The automatic installer has Windows batch script compatibility issues. Use the manual installation method above for reliable results.
 
 ## System Requirements
 
@@ -207,8 +229,13 @@ Have fun coding like it's 1985! 🖥️💚
 
 ### Build fails
 - Make sure you have a stable internet connection
-- Try running `install.bat` again
-- If it still fails, try the manual installation steps
+- Try the manual installation steps above
+- If `npm run build-web` fails with "'cp' is not recognized", this is normal - the web version will still work
+
+### Electron-builder permission errors
+- The "Cannot create symbolic link" errors are normal on Windows
+- These errors don't affect the Windows installer creation
+- The .exe file will still be created successfully in the `release` folder
 
 ### Web interface not accessible
 - Make sure the desktop app is running
