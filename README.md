@@ -2,7 +2,17 @@
 
 A nostalgic COBOL-style terminal emulator for tracking Uber Eats orders, built for former COBOL programmers who want some fun! 💚
 
-![COBOL Terminal Interface](https://via.placeholder.com/800x600/001100/00ff00?text=COBOL+UBEREATS+TERMINAL)
+## Screenshots
+
+### 3270 Terminal Interface
+![COBOL UberEats Terminal Interface](/home/ubuntu/screenshots/localhost_5173_155000.png)
+
+*Authentic IBM 3270 terminal styling with green-on-black display, COBOL UBER EATS ASCII art logo, and classic mainframe function keys*
+
+### Restaurant Management System
+![Restaurant Management Interface](/home/ubuntu/screenshots/localhost_5173_155040.png)
+
+*Restaurant database management with COBOL-style data structures showing current restaurants and instructions for adding new ones*
 
 ## Features
 
