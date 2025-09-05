@@ -100,7 +100,8 @@
     ],
     "win": {
       "target": "nsis",
-      "forceCodeSigning": false
+      "signAndEditExecutable": false,
+      "verifyUpdateCodeSignature": false
     },
     "linux": {
       "target": "AppImage"
