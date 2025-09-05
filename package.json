@@ -13,7 +13,7 @@
     "electron": "electron .",
     "electron-dev": "ELECTRON_IS_DEV=true electron .",
     "build-electron": "npm run build && electron-builder",
-    "build-web": "npm run build && (cp -r dist web-dist || copy dist web-dist /E /I)",
+    "build-web": "npm run build && (cp -r dist web-dist 2>nul || xcopy dist web-dist /E /I /Y)",
     "serve-web": "cd web-dist && python -m http.server 3000",
     "dist": "npm run build && electron-builder --publish=never"
   },
