@@ -62,10 +62,44 @@ npm run build-web
 ```bash
 npx electron-builder --win --publish=never
 ```
+*Note: You may see "Cannot create symbolic link" errors - these are normal and don't affect the build*
 
-**Installation Complete!**
-- **Desktop version**: Look in the `release` folder for the `.exe` installer file
-- **Web version**: Double-click `start-web.bat` to run in your browser
+## What to Do After Installation
+
+**Option A: Use the Desktop Version (Recommended)**
+1. **Find the installer**: Look in the `release` folder for a file ending in `.exe` (like "COBOL UberEats Emulator Setup.exe")
+2. **Install the app**: Double-click the `.exe` file and follow the installation prompts
+3. **Run the app**: After installation, find "COBOL UberEats Emulator" in your Start Menu
+4. **Start using**: The authentic 3270 terminal interface will open automatically
+
+**Option B: Use the Web Version (Easier)**
+1. **Start the web server**: Double-click `start-web.bat` in the main folder
+2. **Wait for browser**: Your web browser should open automatically to `http://localhost:3000`
+3. **If browser doesn't open**: Manually go to `http://localhost:3000` in any web browser
+4. **Start using**: The same terminal interface will appear in your browser
+
+## How to Use the COBOL UberEats Emulator
+
+Once the application is running (either desktop or web):
+
+1. **Main Menu**: You'll see the green terminal with ASCII art logo
+2. **Available Commands**:
+   - Press `V` to view active orders
+   - Press `S` to see order statistics  
+   - Press `A` to add new orders
+   - Press `U` to update order status
+   - Press `C` to view COBOL source code
+   - Press `R` to access Restaurant Manager
+3. **Restaurant Manager**: Press `R` to add your own favorite restaurants
+4. **Exit**: Press `Q` to quit the application
+
+## For Your Mom's COBOL Project
+
+After installation, your mom can:
+1. **Run the application** using either the desktop or web version
+2. **Press `R`** to access the Restaurant Manager
+3. **Follow the on-screen instructions** to add her favorite restaurants
+4. **Edit the COBOL-style data** as described in the programming project section below
 
 ### Automatic Installation (Has Issues)
 If you want to try the automatic installer (not recommended):
