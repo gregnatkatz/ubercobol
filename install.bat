@@ -2,44 +2,79 @@
 setlocal enabledelayedexpansion
 
 echo ========================================
-echo COBOL UberEats Emulator Installer
+echo COBOL UberEats Emulator Auto-Installer
 echo ========================================
 echo.
-echo This installer will set up the COBOL UberEats Emulator for you.
-echo It will check requirements, install dependencies, and build the app.
-echo Please be patient - this may take several minutes...
+echo This will automatically install everything needed for the COBOL UberEats Emulator.
+echo No technical knowledge required - just wait and it will do everything!
 echo.
+echo What this installer will do:
+echo 1. Download and install Node.js (if needed)
+echo 2. Install all required components
+echo 3. Build the desktop and web applications
+echo 4. Create shortcuts for easy access
+echo.
+echo Please be patient - this may take 5-10 minutes...
+echo.
+echo Press any key to start the automatic installation...
+pause >nul
 
 REM Check if Node.js is installed
-echo [1/6] Checking Node.js installation...
+echo.
+echo [Step 1/6] Checking if Node.js is already installed...
 node --version >nul 2>&1
 if %errorlevel% neq 0 (
+    echo Node.js not found - will install automatically...
     echo.
-    echo ERROR: Node.js is not installed on this computer.
+    echo [Step 2/6] Downloading Node.js installer...
+    echo Please wait while we download Node.js (this may take 1-2 minutes)...
+    
+    REM Download Node.js LTS installer
+    powershell -Command "& {[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri 'https://nodejs.org/dist/v20.17.0/node-v20.17.0-x64.msi' -OutFile 'nodejs-installer.msi'}"
+    
+    if not exist "nodejs-installer.msi" (
+        echo.
+        echo ERROR: Could not download Node.js installer.
+        echo Please check your internet connection and try again.
+        echo.
+        echo If this problem continues, you may need to:
+        echo 1. Install Node.js manually from https://nodejs.org/
+        echo 2. Then run this install.bat script again
+        echo.
+        pause
+        exit /b 1
+    )
+    
+    echo Download complete!
     echo.
-    echo SOLUTION:
-    echo 1. Go to https://nodejs.org/
-    echo 2. Download the "LTS" version (recommended for most users)
-    echo 3. Run the installer and follow the prompts
-    echo 4. Restart this computer
-    echo 5. Run this install.bat script again
+    echo [Step 3/6] Installing Node.js...
+    echo A Windows installer window will appear - please follow the prompts.
+    echo Just click "Next" and "Install" when asked.
     echo.
-    echo If you need help, ask someone to assist with installing Node.js.
+    
+    REM Install Node.js silently
+    msiexec /i nodejs-installer.msi /quiet /norestart
+    
+    echo Node.js installation complete!
     echo.
-    echo IMPORTANT: This installer will now close so you can install Node.js.
-    echo After installing Node.js and restarting your computer, run this script again.
+    echo Cleaning up installer file...
+    del nodejs-installer.msi >nul 2>&1
+    
+    echo.
+    echo IMPORTANT: Please restart your computer now for Node.js to work properly.
+    echo After restarting, run this install.bat script again.
     echo.
     echo Press any key to close this installer...
     pause >nul
-    exit /b 1
+    exit /b 0
+) else (
+    for /f "tokens=*" %%i in ('node --version') do set NODE_VERSION=%%i
+    echo Node.js is already installed: !NODE_VERSION!
 )
 
-for /f "tokens=*" %%i in ('node --version') do set NODE_VERSION=%%i
-echo Node.js found: !NODE_VERSION!
-
-REM Check internet connectivity (non-blocking)
+REM Continue with the rest of the installation
 echo.
-echo [2/6] Checking internet connection...
+echo [Step 2/6] Checking internet connection...
 ping -n 1 registry.npmjs.org >nul 2>&1
 if %errorlevel% neq 0 (
     echo Internet connection test failed - this is often normal.
@@ -48,9 +83,8 @@ if %errorlevel% neq 0 (
     echo Internet connection: OK
 )
 
-REM Install dependencies
 echo.
-echo [3/6] Installing dependencies...
+echo [Step 3/6] Installing application components...
 echo This may take 2-5 minutes depending on your internet speed...
 call npm install
 if %errorlevel% neq 0 (
@@ -68,9 +102,8 @@ if %errorlevel% neq 0 (
 )
 echo Dependencies installed successfully!
 
-REM Build the main application
 echo.
-echo [4/6] Building the application...
+echo [Step 4/6] Building the application...
 call npm run build
 if %errorlevel% neq 0 (
     echo.
@@ -93,9 +126,8 @@ if not exist "dist" (
 )
 echo Application built successfully!
 
-REM Build web version
 echo.
-echo [5/6] Building web version...
+echo [Step 5/6] Building web version...
 call npm run build-web
 if %errorlevel% neq 0 (
     echo.
@@ -111,9 +143,8 @@ if not exist "web-dist" (
     echo Web version built successfully!
 )
 
-REM Create Windows executable
 echo.
-echo [6/6] Creating Windows installer...
+echo [Step 6/6] Creating Windows installer...
 echo This may take 1-2 minutes...
 call npx electron-builder --win --publish=never
 if %errorlevel% neq 0 (
@@ -160,7 +191,7 @@ if exist "web-dist" (
     echo WEB VERSION ^(RECOMMENDED^):
     echo 1. Double-click "start-web.bat" to start the application
     echo 2. Your web browser will open automatically
-    echo 3. If it doesn't open, go to: http://localhost:3000
+    echo 3. If it doesn't open, the web address will be shown
     echo 4. This version works exactly the same as the desktop version
     echo.
     
