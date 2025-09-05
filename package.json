@@ -2,6 +2,8 @@
   "name": "cobol-ubereats-emulator",
   "private": true,
   "version": "1.0.0",
+  "description": "A retro 3270 terminal emulator for ordering food, built for COBOL enthusiasts",
+  "author": "Patty's Food Tracker Team",
   "type": "module",
   "main": "public/electron.cjs",
   "homepage": "./",
@@ -94,8 +96,8 @@
     },
     "files": [
       "dist/**/*",
-      "node_modules/**/*",
-      "public/electron.cjs"
+      "public/electron.cjs",
+      "public/assets/**/*"
     ],
     "win": {
       "target": "nsis",
