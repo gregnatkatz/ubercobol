@@ -96,12 +96,11 @@
     },
     "files": [
       "dist/**/*",
-      "public/electron.cjs",
-      "public/assets/**/*"
+      "public/electron.cjs"
     ],
     "win": {
       "target": "nsis",
-      "sign": false
+      "forceCodeSigning": false
     },
     "linux": {
       "target": "AppImage"
