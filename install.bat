@@ -30,7 +30,7 @@ if %errorlevel% neq 0 (
     echo Please wait while we download Node.js (this may take 1-2 minutes)...
     
     REM Download Node.js LTS installer
-    powershell -Command "& {[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri 'https://nodejs.org/dist/v20.17.0/node-v20.17.0-x64.msi' -OutFile 'nodejs-installer.msi'}"
+    powershell -Command "& {[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri \"https://nodejs.org/dist/v20.17.0/node-v20.17.0-x64.msi\" -OutFile \"nodejs-installer.msi\"}"
     
     if not exist "nodejs-installer.msi" (
         echo.
