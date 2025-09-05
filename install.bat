@@ -25,7 +25,12 @@ if %errorlevel% neq 0 (
     echo 5. Run this install.bat script again
     echo.
     echo If you need help, ask someone to assist with installing Node.js.
-    pause
+    echo.
+    echo IMPORTANT: This installer will now close so you can install Node.js.
+    echo After installing Node.js and restarting your computer, run this script again.
+    echo.
+    echo Press any key to close this installer...
+    pause >nul
     exit /b 1
 )
 
